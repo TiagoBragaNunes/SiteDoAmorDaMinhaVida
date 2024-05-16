@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagem no Centro</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            overflow-y: scroll;
+        }
+
+        #container {
+            position: relative;
+            text-align: center;
+        }
+
+        #imagem {
+            width: 500px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        #texto-sobre-imagem {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 21px; /* Reduzido em 10% */
+            line-height: 1.5; /* Espaçamento entre linhas */
+            color: rgb(255, 255, 255);
+            font-family: Arial, sans-serif;
+            text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Adicionando sombra */
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('paisagem.jpg'); /* Alteração para imagem de fundo */
+            background-size: cover; /* Ajuste para cobrir toda a tela */
+            background-position: center; /* Centralizando a imagem */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .corner-image {
+            width: 120px; /* Aumento do tamanho das imagens */
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Definindo posições para as imagens */
+        #top-left { position: fixed; top: 50px; left: 5%; } /* Ajuste para centralizar */
+        #top-right { position: fixed; top: 50px; left: 22.5%; } /* Ajuste para centralizar */
+        #bottom-left { position: fixed; bottom: 50px; left: 5%; } /* Ajuste para centralizar */
+        #bottom-right { position: fixed; bottom: 50px; left: 22.5%; } /* Ajuste para centralizar */
+        #top-left-second { position: fixed; top: 50px; left: 40%; } /* Ajuste para centralizar */
+        #top-right-second { position: fixed; top: 50px; left: 57.5%; } /* Ajuste para centralizar */
+        #bottom-left-second { position: fixed; bottom: 50px; left: 40%; } /* Ajuste para centralizar */
+        #bottom-right-second { position: fixed; bottom: 50px; left: 57.5%; } /* Ajuste para centralizar */
+        
+        /* Definindo cor do texto dos 18 anos como preto */
+        #seu-texto { color: black; text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Contorno preto */ }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <img id="imagem" src="coracao.jpg" alt="Imagem">
+    <div id="texto-sobre-imagem" onclick="ocultarImagem()">FELIZ ANIVERSÁRIO, FEDIDA</div>
+</div>
+
+<audio id="audio" src="idea22.mp3" loop></audio>
+
+<div id="overlay" onclick="fecharTelaVermelha()">
+    <img class="corner-image" id="top-left" src="foto1.png" alt="Foto 1">
+    <img class="corner-image" id="top-right" src="foto2.png" alt="Foto 2">
+    <img class="corner-image" id="bottom-left" src="foto3.png" alt="Foto 3">
+    <img class="corner-image" id="bottom-right" src="foto4.png" alt="Foto 4">
+    <img class="corner-image" id="top-left-second" src="foto5.png" alt="Foto 5">
+    <img class="corner-image" id="top-right-second" src="foto6.png" alt="Foto 6">
+    <img class="corner-image" id="bottom-left-second" src="foto7.png" alt="Foto 7">
+    <img class="corner-image" id="bottom-right-second" src="foto8.png" alt="Foto 8">
+    <h1 id="seu-texto" style="color: white;">À 18 anos atrás a pessoa mais importante da minha vida nasceu... Vc mudou minha vida de um jeito inexplicavel, tudo que vivemos, passamos, tudo de bom que vc já fez pra mim, cada momento ao seu lado... Tudo foi especial pra mim... Vc é a melhor pessoa com quem eu já vivi na minha vida inteira, vc é a melhor pessoa que eu já conheci, a unica pessoa pela qual me apaixonei... darei minha vida pela sua... e darei tudo de mim para que a gente possa se casar o mais cedinho possivel. Todos os dias da minha vida eu acordo e a primeira coisa que eu penso é em vc, nao me imagino em um mundo sem vc, e nem gosto de pensar em como seria se eu não tivesse vc pra me fazer feliz, pra me ajudar, fazer carinho... Vc é a mulher da minha vida e nada pode mudar isso. Vou dar tudo de mim pra que a gente possa realizar todos nossos sonhos juntos... morar aonde quiser (jutinhos) comer oq quiser (juntinhos) fazer oq quiser (juntinhos). Vou fazer de tudo pra que vc se sinta a pessoa mais sortuda do mundo pq é assim que eu me sinto só de pensar em vc. Feliz aniversário, amor da minha vida... Vc é a pessoa que eu mais amo no mundo inteirinho... quero vc pra sempre meu amor... eu te amo muito msm. </h1>
+</div>
+
+<script>
+    function ocultarImagem() {
+        const imagem = document.getElementById('imagem');
+        const texto = document.getElementById('texto-sobre-imagem');
+        const overlay = document.getElementById('overlay');
+        const audio = document.getElementById('audio');
+
+        overlay.style.display = 'flex';
+        imagem.style.display = 'none';
+        texto.style.display = 'none';
+        overlay.removeEventListener('click', fecharTelaVermelha);
+        audio.play();
+    }
+
+    function fecharTelaVermelha() {
+        return;
+    }
+
+    const overlay = document.getElementById('overlay');
+    const imagem = document.getElementById('imagem');
+    const texto = document.getElementById('texto-sobre-imagem');
+
+    overlay.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        imagem.style.display = 'block';
+        texto.style.display = 'block';
+        document.getElementById('audio').pause();
+    });
+</script>
+
+</body>
+</html>
